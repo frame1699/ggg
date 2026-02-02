@@ -32,8 +32,11 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: flutter-apk-sutee-f
-          path: build/app/outputs/flutter-apk/app-release.apk
+          tag_name: v1.0.0
+          name: Flutter APK Release - sutee-f
+          files: build/app/outputs/flutter-apk/app-release.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
